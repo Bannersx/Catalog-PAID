@@ -29,7 +29,19 @@ Ur = U(:,1:r);
 Vr = V(:,1:r);
 Sr = S(1:r,1:r);
 
-Ar =  Ur * Sr* Vr';
+% Una opcion es: Ar =  Ur * Sr* Vr';
+
+% Aproximando la aproximacion del SVD
+B = Ur *Sr;
+C = Vr';
+
+% Donde B y C aproximan la Imagen
+Ar = B * C;
+B1 = im2uint8(B);
+C1 = im2uint8(C);
+save('B.mat','B1');
+save('C.mat', 'C1');
+
 Ar = im2uint8(Ar);
 
 figure
